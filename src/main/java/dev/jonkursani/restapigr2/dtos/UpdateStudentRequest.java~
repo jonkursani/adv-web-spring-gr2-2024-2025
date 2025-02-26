@@ -1,0 +1,17 @@
+package dev.jonkursani.restapigr2.dtos;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class UpdateStudentRequest {
+    private String name;
+    private String email;
+//    private LocalDateTime updatedAt;
+//    private int updatedBy;
+}
