@@ -9,6 +9,7 @@ import dev.jonkursani.restapigr2.services.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -33,7 +34,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDto create(CreateStudentRequest request) {
-        var userToCreate = new Student(0, request.getName(), request.getEmail());
+        var userToCreate = new Student(0, request.getName(), request.getEmail(), true, LocalDateTime.now(),1);
         var createdUser = repository.save(userToCreate);
         return new StudentDto(createdUser.getId(), createdUser.getName(), createdUser.getEmail());
     }
@@ -42,7 +43,7 @@ public class StudentServiceImpl implements StudentService {
     public void update(long id, UpdateStudentRequest request) {
         var studentFromDb = findById(id);
         if (studentFromDb != null) {
-            var studentToUpdate = new Student(id, request.getName(), request.getEmail());
+            var studentToUpdate = new Student(id, request.getName(), request.getEmail(), true, LocalDateTime.now(), 1);
             repository.save(studentToUpdate);
         }
     }

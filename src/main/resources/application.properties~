@@ -5,3 +5,5 @@ spring.datasource.password=secret
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.jpa.show-sql=true
 spring.jpa.hibernate.ddl-auto=update
+# disable springboot security
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
