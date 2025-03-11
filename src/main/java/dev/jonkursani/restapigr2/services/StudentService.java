@@ -1,8 +1,8 @@
 package dev.jonkursani.restapigr2.services;
 
-import dev.jonkursani.restapigr2.dtos.CreateStudentRequest;
-import dev.jonkursani.restapigr2.dtos.StudentDto;
-import dev.jonkursani.restapigr2.dtos.UpdateStudentRequest;
+import dev.jonkursani.restapigr2.dtos.student.CreateStudentRequest;
+import dev.jonkursani.restapigr2.dtos.student.StudentDto;
+import dev.jonkursani.restapigr2.dtos.student.UpdateStudentRequest;
 
 import java.util.List;
 

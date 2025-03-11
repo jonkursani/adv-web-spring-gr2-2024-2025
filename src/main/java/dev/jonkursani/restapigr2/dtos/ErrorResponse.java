@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateStudentRequest {
-    private String name;
-    private String email;
-//    private LocalDateTime createdAt;
-//    private long CreatedBy;
+public class ErrorResponse {
+    private String message;
+    private int status;
 }
