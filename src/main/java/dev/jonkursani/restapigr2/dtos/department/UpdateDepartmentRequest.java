@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateDepartmentRequest {
+public class UpdateDepartmentRequest {
     @NotBlank(message = "Name is required")
     @Size(min = 2, max = 100, message = "Name must be between {min} and {max} characters")
     private String name;

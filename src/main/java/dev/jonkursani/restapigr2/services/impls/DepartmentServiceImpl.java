@@ -2,6 +2,8 @@ package dev.jonkursani.restapigr2.services.impls;
 
 import dev.jonkursani.restapigr2.dtos.department.CreateDepartmentRequest;
 import dev.jonkursani.restapigr2.dtos.department.DepartmentDto;
+import dev.jonkursani.restapigr2.dtos.department.UpdateDepartmentRequest;
+import dev.jonkursani.restapigr2.exceptions.department.DepartmentNotFoundException;
 import dev.jonkursani.restapigr2.mappers.DepartmentMapper;
 import dev.jonkursani.restapigr2.repositories.DepartmentRepository;
 import dev.jonkursani.restapigr2.services.DepartmentService;
@@ -32,5 +34,11 @@ public class DepartmentServiceImpl implements DepartmentService {
         return mapper.toDto(createdDepartment);
     }
 
-
+    @Override
+    public void update(Integer id, UpdateDepartmentRequest request) {
+        var departmentFromDb = repository.findById(id)
+                .orElseThrow(() -> new DepartmentNotFoundException(id));
+        mapper.updateEntityFromDto(request, departmentFromDb);
+        repository.save(departmentFromDb);
+    }
 }
