@@ -15,20 +15,21 @@ import java.util.Map;
 public class ErrorController {
     // Exception for validation
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException e) {
+    public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException e) {
         Map<String, String> errors = new HashMap<>();
         e.getBindingResult()
                 .getFieldErrors()
                 .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
 
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        var errorResponse = new ErrorResponse("Validation Error", HttpStatus.BAD_REQUEST.value(), errors);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST); // 400
     }
 
     // Exception for general errors
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
         return new ResponseEntity<>(
-                new ErrorResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value()), // 500
+                new ErrorResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value(), null), // 500
                 HttpStatus.INTERNAL_SERVER_ERROR
         );
     }
@@ -37,7 +38,7 @@ public class ErrorController {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException e) {
         return new ResponseEntity<>(
-                new ErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND.value()), // 404
+                new ErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND.value(), null), // 404
                 HttpStatus.NOT_FOUND
         );
     }
