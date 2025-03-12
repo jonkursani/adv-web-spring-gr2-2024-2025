@@ -14,6 +14,7 @@ import java.util.Set;
 public interface DepartmentMapper {
     DepartmentDto toDto(Department department);
     Department toEntity(CreateDepartmentRequest request);
+    Department toEntity(DepartmentDto request);
     void updateEntityFromDto(UpdateDepartmentRequest request, @MappingTarget Department department);
 
     @Mapping(target = "employeeCount", source = "employees", qualifiedByName = "countEmployees")
