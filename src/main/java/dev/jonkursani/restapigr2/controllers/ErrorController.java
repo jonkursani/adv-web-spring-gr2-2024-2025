@@ -42,4 +42,13 @@ public class ErrorController {
                 HttpStatus.NOT_FOUND
         );
     }
+
+    // Exception for illegal argument exception
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException e) {
+        return new ResponseEntity<>(
+                new ErrorResponse(e.getMessage(), HttpStatus.CONFLICT.value(), null), // 409
+                HttpStatus.CONFLICT
+        );
+    }
 }
