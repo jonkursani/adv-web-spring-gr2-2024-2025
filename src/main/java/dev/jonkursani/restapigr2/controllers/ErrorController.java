@@ -51,4 +51,12 @@ public class ErrorController {
                 HttpStatus.CONFLICT
         );
     }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalStateException(IllegalStateException e) {
+        return new ResponseEntity<>(
+                new ErrorResponse(e.getMessage(), HttpStatus.CONFLICT.value(), null), // 409
+                HttpStatus.CONFLICT
+        );
+    }
 }

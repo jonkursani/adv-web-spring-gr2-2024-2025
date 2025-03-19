@@ -46,4 +46,5 @@ public class EmployeeController {
         service.delete(id);
         return ResponseEntity.noContent().build(); // 204
     }
+
 }
