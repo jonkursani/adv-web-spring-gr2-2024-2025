@@ -4,6 +4,7 @@ import dev.jonkursani.restapigr2.dtos.ErrorResponse;
 import dev.jonkursani.restapigr2.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -57,6 +58,14 @@ public class ErrorController {
         return new ResponseEntity<>(
                 new ErrorResponse(e.getMessage(), HttpStatus.CONFLICT.value(), null), // 409
                 HttpStatus.CONFLICT
+        );
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleBadCredentialsException(BadCredentialsException e) {
+        return new ResponseEntity<>(
+                new ErrorResponse(e.getMessage(), HttpStatus.UNAUTHORIZED.value(), null), // 401
+                HttpStatus.UNAUTHORIZED
         );
     }
 }
