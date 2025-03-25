@@ -18,6 +18,10 @@ import java.time.LocalDate;
 //        │ │ │ │ │ │          (0 or 7 is Sunday, or MON-SUN)
 //        │ │ │ │ │ │
 //        * * * * * *
+
+// https://docs.spring.io/spring-framework/reference/integration/scheduling.html#scheduling-cron-expression
+// https://crontab.guru/
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -38,7 +42,7 @@ public class EmployeeReportScheduler {
 
     // every 8 march 12 PM
 //    @Scheduled(cron = "0 0 12 8 3 *")
-    @Scheduled(fixedRate = 10000)
+//    @Scheduled(fixedRate = 10000)
     public void happyWomenDay() {
         var employees = repository.findAll();
 
@@ -52,7 +56,7 @@ public class EmployeeReportScheduler {
     // new hire report
     // every friday 9 AM
 //    @Scheduled(cron = "0 0 9 * * FRI")
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(fixedRate = 5000)
     @Transactional
     public void newHireReport() {
         var oneMonthAgo = LocalDate.now().minusMonths(1);

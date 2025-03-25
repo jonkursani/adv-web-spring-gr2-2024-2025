@@ -1,9 +1,0 @@
-spring.application.name=rest-api-gr2
-spring.datasource.url=jdbc:postgresql://127.0.0.1:5432/rest-api-gr2
-spring.datasource.username=user
-spring.datasource.password=secret
-spring.datasource.driver-class-name=org.postgresql.Driver
-spring.jpa.show-sql=true
-spring.jpa.hibernate.ddl-auto=update
-# disable springboot security
-spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration

@@ -64,7 +64,8 @@ public class ErrorController {
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ErrorResponse> handleBadCredentialsException(BadCredentialsException e) {
         return new ResponseEntity<>(
-                new ErrorResponse(e.getMessage(), HttpStatus.UNAUTHORIZED.value(), null), // 401
+//                new ErrorResponse(e.getMessage(), HttpStatus.UNAUTHORIZED.value(), null), // 401
+                new ErrorResponse("Invalid username or password", HttpStatus.UNAUTHORIZED.value(), null), // 401
                 HttpStatus.UNAUTHORIZED
         );
     }
