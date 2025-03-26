@@ -16,7 +16,8 @@ public enum Role {
     // Cili rol cfar permission ka e percaktoni ketu
     ADMIN(Set.of(ADMIN_READ, ADMIN_WRITE, MANAGER_READ, MANAGER_WRITE)),
     MANAGER(Set.of(MANAGER_READ, MANAGER_WRITE)),
-    USER(Collections.emptySet());
+    USER(Collections.emptySet()),
+    EMPLOYEE(Collections.emptySet());
 
     @Getter
     private final Set<Permission> permissions;
@@ -32,4 +33,3 @@ public enum Role {
         return authorities;
     }
 }
-

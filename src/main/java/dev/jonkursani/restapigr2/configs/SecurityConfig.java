@@ -66,9 +66,12 @@ public class SecurityConfig {
                             .hasAnyAuthority(ADMIN_WRITE.name(), MANAGER_WRITE.name())
 
                         // admin controller
-                        .requestMatchers("api/v1/admin/**").hasRole(ADMIN.name())
-                        // endpoint specifik
-                        .requestMatchers(HttpMethod.GET, "api/v1/admin/**").hasAuthority(ADMIN_READ.name())
+//                        .requestMatchers("api/v1/admin/**").hasRole(ADMIN.name())
+//                        // endpoint specifik
+//                        .requestMatchers(HttpMethod.GET, "api/v1/admin/**").hasAuthority(ADMIN_READ.name())
+//                        .requestMatchers(HttpMethod.POST, "api/v1/admin/**").hasAuthority(ADMIN_WRITE.name())
+//                        .requestMatchers(HttpMethod.PUT, "api/v1/admin/**").hasAuthority(ADMIN_WRITE.name())
+//                        .requestMatchers(HttpMethod.DELETE, "api/v1/admin/**").hasAuthority(ADMIN_WRITE.name())
 
                         .anyRequest().authenticated()
                 )
