@@ -20,8 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static dev.jonkursani.restapigr2.entities.Permission.*;
-import static dev.jonkursani.restapigr2.entities.Role.ADMIN;
-import static dev.jonkursani.restapigr2.entities.Role.MANAGER;
+import static dev.jonkursani.restapigr2.entities.Role.*;
 
 @Configuration
 @EnableWebSecurity
@@ -76,6 +75,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> {}) // Enable CORS with the bean from CorsConfig
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
@@ -89,18 +89,19 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         AppUserDetailsService appUserDetailsService = new AppUserDetailsService(userRepository);
 
-//        String email = "user@test.com";
-//        userRepository.findByEmail(email)
-//                .orElseGet(() -> {
-//                    var user = new User()
-//                            .builder()
-//                            .name("User")
-//                            .email(email)
-//                            .password(passwordEncoder().encode("password"))
-//                            .build();
-//
-//                    return userRepository.save(user);
-//                });
+        String email = "user@test.com";
+        userRepository.findByEmail(email)
+                .orElseGet(() -> {
+                    var user = new User()
+                            .builder()
+                            .name("User")
+                            .email(email)
+                            .role(USER)
+                            .password(passwordEncoder().encode("password"))
+                            .build();
+
+                    return userRepository.save(user);
+                });
 
         return appUserDetailsService;
     }
