@@ -37,8 +37,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     // per cdo requst bashkangjitja edhe userId
                     request.setAttribute("userId", ((AppUserDetails) userDetails).getId());
                 }
-
-                filterChain.doFilter(request, response);
             }
         } catch (Exception e) {
             log.warn("Invalid token {}", e.getMessage());

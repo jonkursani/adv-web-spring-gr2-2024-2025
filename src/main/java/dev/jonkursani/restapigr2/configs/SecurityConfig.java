@@ -92,11 +92,11 @@ public class SecurityConfig {
         String email = "user@test.com";
         userRepository.findByEmail(email)
                 .orElseGet(() -> {
-                    var user = new User()
-                            .builder()
+                    var user = User.builder()
                             .name("User")
                             .email(email)
                             .role(USER)
+                            .isActive(true)
                             .password(passwordEncoder().encode("password"))
                             .build();
 
